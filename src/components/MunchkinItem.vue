@@ -37,7 +37,7 @@ defineProps({
                         <i class="fa fa-hand-fist"></i>
                         {{ player.level + player.items }}
                     </p>
-                    <p class="text-gray-500 text-sm"
+                    <p class="text-teal-600 text-sm"
                        title="items"
                     >
                         <i class="fa fa-shirt"></i>

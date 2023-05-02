@@ -31,7 +31,7 @@ const addNewPlayer = () => {
 </script>
 
 <template>
- <div class="p-5">
+ <div class="p-4">
      <form class="form flex flex-col gap-3" @submit.prevent="addNewPlayer">
          <div>
              <label for="name" class="block mb-2 font-medium text-primary-900">Name</label>
@@ -62,7 +62,7 @@ const addNewPlayer = () => {
              </label>
              <div class="flex flex-wrap gap-3 gap-y-5 justify-center">
                  <div class="relative" v-for="x in 8">
-                     <img class="w-16 h-16 rounded-full drop-shadow-lg border-primary-300 border-2"
+                     <img class="w-16 h-16 rounded-full drop-shadow-lg border-primary-300 border-2 cursor-pointer"
                           :src="getImageUrl(x)" alt=""
                           :class="{ '--selected': x === newPlayer.image }"
                           @click="newPlayer.image = x"
