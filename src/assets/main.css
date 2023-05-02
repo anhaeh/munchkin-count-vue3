@@ -1,0 +1,20 @@
+@import "./styles/scrollbar.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply flex gap-2.5 items-center rounded-lg px-4 py-3 text-center text-slate-600 text-sm font-semibold outline-none transition duration-100 md:text-base focus-visible:ring ring-indigo-300 active:bg-slate-300 border-solid border-2;
+    }
+    .btn-primary {
+        @apply btn bg-primary-800 text-secondary-700 hover:bg-secondary-700 hover:text-primary-900 border-secondary-500 active:bg-primary-300;
+    }
+    .btn-primary-outline {
+        @apply btn bg-secondary-700 text-primary-900 hover:bg-primary-500 hover:text-amber-100 border-primary-300 active:bg-primary-700;
+    }
+    .input {
+        @apply bg-gray-100 border border-secondary-500 text-gray-900 rounded-md focus:ring-primary-300 focus:border-primary-300 w-full p-2.5
+    }
+}
