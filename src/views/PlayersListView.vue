@@ -12,13 +12,18 @@ const { players } = useMunchkinStore()
     >
         <i class="fa-solid fa-plus"></i>
     </button>
-    <ul role="list" class="flex flex-col gap-3">
+    <ul role="list" class="flex flex-col gap-4">
         <MunchkinItem
           v-for="player in players"
           :key="player.id"
           :player="player"
 
         />
+        <div v-if="!players.length"
+             class="bg-secondary-700 rounded-lg p-4 border-secondary-500 border-2 text-center font-bold"
+        >
+            Not have munchkins yet
+        </div>
     </ul>
 </template>
 

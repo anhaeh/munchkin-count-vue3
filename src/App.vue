@@ -9,7 +9,7 @@ import { RouterView } from 'vue-router'
       <template #actions>
       </template>
     </TopHeader>
-    <main class="container mx-auto p-4 flex flex-col">
+    <main class="container mx-auto p-5 flex flex-col">
       <RouterView />
     </main>
   </div>

@@ -22,7 +22,10 @@ const stats = [
     label: 'Level',
     color: 'text-primary-900',
     icon: 'fa-crown',
-    callback: (count) => player.level += count
+    callback: (count) => {
+        const newLevel = player.level + count
+        if (newLevel >= 1 && newLevel <= 10) player.level = newLevel
+    }
   },
   {
     value: computed(() => player.items),
@@ -44,15 +47,19 @@ const deletePlayer = () => {
   removePlayer(player.id)
   router.push({ name: 'home' })
 }
+
+const killPlayer = () => {
+    player.items = 0
+    modifier.value = 0
+}
 </script>
 
 <template>
-    <div class="float-btn btn-primary-outline rounded-full" @click="deletePlayer">
-        <i class="fa fa-trash "></i>
-    </div>
     <div v-if="player">
         <div class="flex items-center space-x-4">
-            <img class="w-20 h-20 rounded-full drop-shadow" :src="getImageUrl(player.image)" alt="">
+            <img class="w-20 h-20 rounded-full drop-shadow border-primary-300 border-2"
+                 :src="getImageUrl(player.image)"
+            >
             <div class="font-medium">
                 <div>{{ player.name }}</div>
                 <div class="mt-3 leading-5 text-primary-300"
@@ -67,7 +74,7 @@ const deletePlayer = () => {
             <p class="text-red-900 text-3xl font-bold"
                title="atack"
             >
-                <i class="fa fa-hand-fist"></i>
+                <i class="fa fa-hand-fist mr-1"></i>
                 Attack {{ player.level + player.items + modifier }}
             </p>
         </div>
@@ -84,7 +91,19 @@ const deletePlayer = () => {
             </StatButton>
         </div>
     </div>
-</template>
+    <Teleport to="#header">
+        <div class="btn-primary w-12 h-12" @click="deletePlayer" title="delete player">
+            <i class="fa fa-trash"></i>
+        </div>
+    </Teleport>
 
-<style scoped lang="sass">
-</style>
+    <div class="btn-primary-outline float-btn rounded-full left-5 text-lg"
+         @click="killPlayer"
+         title="die"
+    >
+        <i class="fa fa-skull"></i>
+    </div>
+    <div class="btn-primary float-btn rounded-full" @click="">
+        <i class="fa fa-user-group"></i>
+    </div>
+</template>

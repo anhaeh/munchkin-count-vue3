@@ -12,7 +12,7 @@ export const useMunchkinStore = defineStore('munchkins', {
   actions: {
     addPlayer: function (player) {
       const newPlayer = Object.assign({
-        id: this.players.length + 1,
+        id: Date.now(),
         level: 1,
         items: 0
       }, player)
