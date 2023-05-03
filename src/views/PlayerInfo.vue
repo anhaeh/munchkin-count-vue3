@@ -94,7 +94,7 @@ const killPlayer = () => {
             </div>
         </div>
         <Teleport to="#header">
-            <div class="btn-primary w-12 h-12" @click="deletePlayer" title="delete player">
+            <div class="btn-primary w-12 h-12 cursor-pointer" @click="deletePlayer" title="delete player">
                 <i class="fa fa-trash"></i>
             </div>
         </Teleport>

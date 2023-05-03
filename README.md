@@ -1,9 +1,11 @@
 # Munchkin counter with Vue3 + Pinia
 
+This is a basic App for following a Munchkin Game. You can add players and save their stats from a game.
+
 ![Screenshot](screens/screen1.png)
 ![Screenshot](screens/screen2.png)
+![Screenshot](screens/screen3.png)
 
-This is a basic App for following a Munchkin Game. You can add players and save their stats from a game.
 
 ## Recommended IDE Setup
 
