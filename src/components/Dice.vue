@@ -7,7 +7,7 @@ const dice = reactive({
 })
 const rollDice = () => {
   dice.loading = true
-  const newValue = Math.floor(Math.random() * 5) + 1
+  const newValue = Math.floor(Math.random() * 6) + 1
   const diceClasses = {
     1: 'one',
     2: 'two',

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MunchkinView from '@/views/PlayersListView.vue'
 import AddPlayerView from '@/views/AddPlayerView.vue'
-import PlayerInfo from '@/views/PlayerInfo.vue'
+import PlayerInfo from '@/views/PlayerView.vue'
 import BattleView from '@/views/BattleView.vue'
 
 

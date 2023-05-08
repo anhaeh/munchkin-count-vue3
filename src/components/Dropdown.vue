@@ -25,7 +25,7 @@ const checkOutsideComponent = () => {
 </script>
 
 <template>
-    <div class="dropdown-component absolute left-3 bottom-20">
+    <div class="dropdown-component fixed bottom-20">
         <div @click="show = true">
             <slot></slot>
         </div>

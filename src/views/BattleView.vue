@@ -1,9 +1,10 @@
 <script setup>
-import { computed, ref } from 'vue'
-import StatButton from '@/components/StatButton.vue'
 import { useMunchkinStore } from '@/stores/MunchkinStore'
-const { getPlayer, getImageUrl, removePlayer } = useMunchkinStore()
-import { useRouter } from 'vue-router'
+const { getPlayer } = useMunchkinStore()
+import Dropdown from '@/components/Dropdown.vue'
+import PlayerStats from '@/components/PlayerStats.vue'
+import { computed, reactive, ref } from 'vue'
+import StatButton from '@/components/StatButton.vue'
 
 const props = defineProps({
     id: {
@@ -11,69 +12,115 @@ const props = defineProps({
     }
 })
 
-const router = useRouter()
-const player = getPlayer(props.id)
-if (!player) router.push('/')
-const modifier = ref(0)
+const players = reactive([
+    Object.assign(getPlayer(props.id), { modifier: 0 })
+])
 
-const stats = [
+const dropdownItems = [
     {
-        value: computed(() => player.level),
-        label: 'Level',
-        color: 'text-primary-900',
-        icon: 'fa-crown',
-        callback: (count) => {
-            const newLevel = player.level + count
-            if (newLevel >= 1 && newLevel <= 10) player.level = newLevel
-        }
+        label: 'Add Player',
+        icon: 'fa-user',
+        callback: () => {}
     },
     {
-        value: computed(() => player.items),
-        label: 'Items',
-        color: 'text-teal-700',
-        icon: 'fa-shirt',
-        callback: (count) => player.items += count
-    },
-    {
-        value: computed(() => modifier.value),
-        label:'Modifier',
-        color: 'text-indigo-900',
-        icon: 'fa-scale-balanced',
-        callback: (count) => modifier.value += count
+        label: 'Add Monster',
+        icon: 'fa-ghost',
+        callback: () => addMonster()
     }
 ]
+
+
+// TODO componentizar en monsterList.vue
+let monsters = reactive([])
+const addMonster = () => {
+    monsters.push({
+        level: 1,
+        modifier: 0
+    })
+}
+const deleteMonster = (id) => {
+    monsters = monsters.filter((_, idx) => idx !== id)
+}
+addMonster()
 
 </script>
 
 <template>
     <div>
-        <div v-if="player" class="p-2">
-            <div class="flex items-center space-x-2 mb-2">
-                <img class="w-12 h-12 rounded-full drop-shadow border-primary-300 border-2"
-                     :src="getImageUrl(player.image)"
+        <PlayerStats v-for="player in players" :key="player.id"
+                     :playerId="id"
+                     v-model:modifier="player.modifier"
+                     :show-attack="false" />
+        <div class="counters py-10 flex">
+            <div class="text-center w-1/2">
+                <p class="text-red-900 text-3xl font-bold"
+                   title="atack"
                 >
-                <div class="font-medium">
-                    <div>{{ player.name }}</div>
-                    <div class="leading-5 text-primary-300"
-                         title="gender"
-                         @click="player.isMale = !player.isMale"
-                    >
-                        <i class="fa" :class="player.isMale ? 'fa-mars': 'fa-venus'"></i>
-                    </div>
-                </div>
+                    <i class="fa fa-hand-fist mr-1"></i>
+                    22
+                </p>
             </div>
-            <div class="flex flex-col gap-1">
-                <StatButton v-for="item in stats"
-                            :key="item.label"
-                            :value="item.value"
-                            :label="item.label"
-                            :color="item.color"
-                            :icon="item.icon"
-                            @update-counter="item.callback"
+            <div class="text-center w-1/2">
+                <p class="text-blue-700 text-3xl font-bold"
+                   title="atack"
                 >
-                    {{ player.level }}
-                </StatButton>
+                    <i class="fa fa-ghost mr-1"></i>
+                    22
+                </p>
             </div>
         </div>
+
+        <div class="flex flex-nowrap overflow-auto">
+            <div v-for="(monster, monsterId) in monsters" :key="`monster${monsterId}`" class="min-w-full p-2 px-5">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4 mb-2">
+                        <img class="w-20 h-20 rounded-full drop-shadow border-primary-300 border-2"
+                             src="../assets/images/monster.png"
+                        >
+                        <div class="font-medium">
+                            <div>Monster {{ monsterId + 1 }}</div>
+                        </div>
+                    </div>
+                    <div
+                      v-if="monsterId !== 0"
+                      @click="deleteMonster(monsterId)"
+                      class="flex w-8 h-8 p-2 bg-amber-100 rounded text-gray-500 drop-shadow items-center justify-center"
+                    >
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <StatButton :value="monster.level"
+                                label="Level"
+                                color="text-primary-900"
+                                icon="fa-crown"
+                                @update-counter="e => monster.level += e"
+                    >
+                        {{ monster.level }}
+                    </StatButton>
+                    <StatButton :value="monster.modifier"
+                                label="Modifier"
+                                color="text-indigo-900"
+                                icon="fa-scale-balanced"
+                                @update-counter="e => monster.modifier += e"
+                    >
+                        {{ monster.items }}
+                    </StatButton>
+                </div>
+            </div>
+        </div>
+        <dropdown :items="dropdownItems" class="right-3">
+            <div class="btn-primary-outline float-btn rounded-full"
+                 title="more"
+            >
+                <i class="fa fa-people-group"></i>
+            </div>
+        </dropdown>
     </div>
 </template>
+
+<style lang="sass" scoped>
+:deep(.attack-counter)
+    display: none
+</style>
