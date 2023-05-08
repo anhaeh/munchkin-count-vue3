@@ -1,8 +1,17 @@
 <script setup>
 import { useMunchkinStore } from '@/stores/MunchkinStore'
 import MunchkinItem from '@/components/MunchkinItem.vue'
+import Dropdown from '@/components/Dropdown.vue'
 
-const { players } = useMunchkinStore()
+const store = useMunchkinStore()
+
+const dropdownItems = [
+    {
+        label: 'New Game',
+        icon: 'fa-rotate-right',
+        callback: store.newGame
+    }
+]
 </script>
 
 <template>
@@ -13,19 +22,26 @@ const { players } = useMunchkinStore()
         >
             <i class="fa-solid fa-plus"></i>
         </button>
+        <div v-if="!store.getPlayersList.length"
+             class="bg-secondary-700 rounded-lg p-4 border-secondary-500 border-2 text-center font-bold"
+        >
+            Not have munchkins yet
+        </div>
         <ul role="list" class="flex flex-col gap-4">
             <MunchkinItem
-              v-for="player in players"
+              v-for="player in store.getPlayersList"
               :key="player.id"
               :player="player"
 
             />
-            <div v-if="!players.length"
-                 class="bg-secondary-700 rounded-lg p-4 border-secondary-500 border-2 text-center font-bold"
-            >
-                Not have munchkins yet
-            </div>
         </ul>
+        <dropdown :items="dropdownItems">
+            <div class="btn-primary-outline float-btn rounded-full left-5"
+                 title="more"
+            >
+                <i class="fa fa-ellipsis-vertical"></i>
+            </div>
+        </dropdown>
     </div>
 </template>
 

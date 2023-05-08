@@ -22,7 +22,7 @@ defineProps({
             <div class="flex items-center">
                 <div class="flex min-w-0 items-center">
                     <p class="text-xl font-semibold leading-6 text-gray-900">{{ player.name }}</p>
-                    <div class="ml-2 text-sm mt-1 leading-5 text-gray-500"
+                    <div class="ml-2 text-sm leading-5 text-gray-500"
                          title="gender"
                     >
                         <i class="fa fa-lg" :class="player.isMale ? 'fa-mars': 'fa-venus'"></i>

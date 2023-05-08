@@ -25,6 +25,8 @@ import { RouterView } from 'vue-router'
   position: fixed
   bottom: 1rem
   right: 1rem
+  i
+    @apply text-lg
 .v-enter-active
   transition: opacity 0.3s ease
 .v-enter-from, .v-leave-to

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MunchkinView from '@/views/PlayersListView.vue'
 import AddPlayerView from '@/views/AddPlayerView.vue'
 import PlayerInfo from '@/views/PlayerInfo.vue'
+import BattleView from '@/views/BattleView.vue'
 
 
 const router = createRouter({
@@ -24,10 +25,22 @@ const router = createRouter({
       path: '/player/:id/',
       name: 'showPlayer',
       meta: {
-        title: 'Munchkin'
+        title: 'Munchkin',
+        showCube: true
       },
       props: true,
       component: PlayerInfo
+    },
+    {
+      path: '/battle/:id/',
+      name: 'battle',
+      meta: {
+        title: 'Battle',
+        showCube: true,
+        goBack: 'showPlayer'
+      },
+      props: true,
+      component: BattleView
     },
   ]
 })

@@ -4,6 +4,7 @@ import StatButton from '@/components/StatButton.vue'
 import { useMunchkinStore } from '@/stores/MunchkinStore'
 const { getPlayer, getImageUrl, removePlayer } = useMunchkinStore()
 import { useRouter } from 'vue-router'
+import Dropdown from '@/components/Dropdown.vue'
 
 const props = defineProps({
   id: {
@@ -15,7 +16,6 @@ const router = useRouter()
 const player = getPlayer(props.id)
 if (!player) router.push('/')
 const modifier = ref(0)
-const showCollapse = ref(false)
 
 const stats = [
   {
@@ -24,8 +24,8 @@ const stats = [
     color: 'text-primary-900',
     icon: 'fa-crown',
     callback: (count) => {
-        const newLevel = player.level + count
-        if (newLevel >= 1 && newLevel <= 10) player.level = newLevel
+      const newLevel = player.level + count
+      if (newLevel >= 1 && newLevel <= 10) player.level = newLevel
     }
   },
   {
@@ -44,15 +44,24 @@ const stats = [
   }
 ]
 
-const deletePlayer = () => {
-  removePlayer(player.id)
-  router.push({ name: 'home' })
-}
-
-const killPlayer = () => {
-    player.items = 0
-    modifier.value = 0
-}
+const dropdownItems = [
+  {
+    label: 'Kill Player',
+    icon: 'fa-skull',
+    callback: () => {
+        player.items = 0
+        modifier.value = 0
+    }
+  },
+  {
+    label: 'Remove Player',
+    icon: 'fa-trash',
+    callback: () => {
+        removePlayer(player.id)
+        router.push({ name: 'home' })
+    }
+  }
+]
 </script>
 
 <template>
@@ -93,35 +102,15 @@ const killPlayer = () => {
                 </StatButton>
             </div>
         </div>
-        <Teleport to="#header">
-            <div class="btn-primary w-12 h-12 cursor-pointer" @click="deletePlayer" title="delete player">
-                <i class="fa fa-trash"></i>
-            </div>
-        </Teleport>
-        <div class="btn-primary-outline float-btn rounded-full left-5 text-lg"
-             @click="killPlayer"
-             title="die"
-        >
-            <i class="fa fa-skull"></i>
+        <div class="btn-primary float-btn rounded-full" @click="router.push({name: 'battle', params: { id: props.id }})">
+            <i class="fa fa-dungeon"></i>
         </div>
-        <div class="btn-primary float-btn rounded-full" @click="showCollapse = !showCollapse">
-            <i class="fa fa-user-group"></i>
-        </div>
-        <Transition enter-from-class="transition duration-200 scale-100 opacity-0"
-                    enter-to-class="transition duration-200 scale-100"
-                    leave-from-class="transition duration-150 scale-100"
-                    leave-to-class="transition duration-150 scale-100 opacity-0"
-        >
-            <div v-show="showCollapse" class="absolute right-3 bottom-20 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add player</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add monster</a>
-                    </li>
-                </ul>
+        <dropdown :items="dropdownItems">
+            <div class="btn-primary-outline float-btn rounded-full left-5"
+                 title="more"
+            >
+                <i class="fa fa-ellipsis-vertical"></i>
             </div>
-        </Transition>
+        </dropdown>
     </div>
 </template>

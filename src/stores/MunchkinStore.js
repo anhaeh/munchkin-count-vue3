@@ -7,7 +7,7 @@ export const useMunchkinStore = defineStore('munchkins', {
     }
   },
   getters: {
-    double: (state) => state.count * 2
+    getPlayersList: (state) => state.players
   },
   actions: {
     addPlayer: function (player) {
@@ -26,6 +26,9 @@ export const useMunchkinStore = defineStore('munchkins', {
     },
     removePlayer: function(playerId) {
       return this.players = this.players.filter(x => x.id !== parseInt(playerId))
+    },
+    newGame: function() {
+      this.players = []
     },
   },
   persist: true

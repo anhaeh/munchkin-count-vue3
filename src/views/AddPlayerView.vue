@@ -62,7 +62,7 @@ const addNewPlayer = () => {
              </label>
              <div class="flex flex-wrap gap-3 gap-y-5 justify-center">
                  <div class="relative" v-for="x in 8">
-                     <img class="w-16 h-16 rounded-full drop-shadow-lg border-primary-300 border-2 cursor-pointer"
+                     <img class="w-16 h-16 rounded-full drop-shadow-lg border-primary-300 border-2 cursor-pointer brightness-75"
                           :src="getImageUrl(x)" alt=""
                           :class="{ '--selected': x === newPlayer.image }"
                           @click="newPlayer.image = x"
@@ -81,5 +81,5 @@ const addNewPlayer = () => {
 
 <style scoped lang="sass">
 .--selected
-    @apply border-green-600 border-4
+    @apply border-green-600 border-4 brightness-100
 </style>
