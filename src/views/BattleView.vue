@@ -47,3 +47,17 @@ const monstersAttack = ref(0)
 .--tab-active
   @apply border-b-primary-800 border-b-2 bg-secondary-100
 </style>
+
+<style lang="sass" scoped>
+:deep()
+  .avatar-title
+    display: none
+  .attack-counter
+    padding: 0
+    p
+      @apply text-lg
+  .stats
+    @apply gap-2
+    div
+      @apply text-lg
+</style>

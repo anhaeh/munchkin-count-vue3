@@ -31,9 +31,9 @@ watch(monsters, (newValue) => {
 
 <template>
     <div class="border-b border-gray-200">
-        <ul class="flex flex-wrap text-sm font-medium text-center text-primary-900">
+        <ul class="flex flex-wrap text-sm -mb-px font-medium text-center text-primary-900">
             <li v-for="(monster, tabId) in monsters">
-                    <span class="cursor-pointer inline-flex py-2 px-4 border-b-2 group items-center rounded-t-lg"
+                    <span class="cursor-pointer inline-flex py-2 px-4 border-b group items-center rounded-t-lg"
                           :class="{'--tab-active': currentTabMonster === tabId }"
                           @click="currentTabMonster = tabId"
                     >
@@ -51,7 +51,7 @@ watch(monsters, (newValue) => {
         </ul>
     </div>
 
-    <div class="flex flex-col gap-3 p-2 mt-2">
+    <div class="stats flex flex-col gap-2 p-2 mt-2">
         <div class="attack-counter text-center p-3 my-3">
             <p class="text-red-900 font-bold"
                title="atack"
@@ -76,18 +76,8 @@ watch(monsters, (newValue) => {
         >
             {{ currentMonster.modifier }}
         </StatButton>
-        <div class="flex justify-center mt-5" v-if="currentTabMonster > 0">
-            <div class="btn btn-primary justify-center w-1/2" @click="deleteMonster">Delete monster</div>
-        </div>
+    </div>
+    <div class="flex justify-center mt-5" v-if="currentTabMonster > 0">
+        <div class="btn btn-primary justify-center w-1/2" @click="deleteMonster">Delete monster</div>
     </div>
 </template>
-
-<style lang="sass" scoped>
-:deep()
-  .avatar-title
-    display: none
-  .attack-counter
-    padding: 0
-    p
-      @apply text-lg
-</style>

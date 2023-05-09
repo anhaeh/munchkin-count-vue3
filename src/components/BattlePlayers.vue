@@ -39,7 +39,7 @@ watch(players, (newValue) => {
     <div class="border-b border-gray-200 dark:border-gray-700">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-primary-900">
             <li v-for="(player, tabId) in players">
-              <span class="cursor-pointer inline-flex py-2 px-4 border-b-2 group items-center rounded-t-lg"
+              <span class="cursor-pointer inline-flex py-2 px-4 border-b group items-center rounded-t-lg"
                     :class="{'--tab-active': currentTabPlayer === tabId }"
                     @click="currentTabPlayer = tabId"
               >
@@ -66,13 +66,3 @@ watch(players, (newValue) => {
                  v-model:modifier="currentPlayer.modifier"
     />
 </template>
-
-<style lang="sass" scoped>
-:deep()
-  .avatar-title
-    display: none
-  .attack-counter
-    padding: 0
-    p
-      @apply text-lg
-</style>

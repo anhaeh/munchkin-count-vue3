@@ -70,7 +70,7 @@ const stats = [
                 Attack {{ player.level + player.items + modifier }}
             </p>
         </div>
-        <div class="flex flex-col gap-4">
+        <div class="stats flex flex-col gap-4">
             <StatButton v-for="item in stats"
                         :key="item.label"
                         :value="item.value"
