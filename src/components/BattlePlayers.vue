@@ -39,8 +39,8 @@ watch(players, (newValue) => {
     <div class="border-b border-gray-200 dark:border-gray-700">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-primary-900">
             <li v-for="(player, tabId) in players">
-              <span class="cursor-pointer inline-flex py-2 px-4 border-b group items-center rounded-t-lg"
-                    :class="{'--tab-active': currentTabPlayer === tabId }"
+              <span class="cursor-pointer inline-flex py-2 px-4 border-b-2 group items-center rounded-t-lg"
+                    :class="currentTabPlayer === tabId ? '--tab-active' : 'border-transparent'"
                     @click="currentTabPlayer = tabId"
               >
                 <img class="h-8 rounded-full mr-2 border border-gray-400"

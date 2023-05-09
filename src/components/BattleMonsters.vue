@@ -33,8 +33,8 @@ watch(monsters, (newValue) => {
     <div class="border-b border-gray-200">
         <ul class="flex flex-wrap text-sm -mb-px font-medium text-center text-primary-900">
             <li v-for="(monster, tabId) in monsters">
-                    <span class="cursor-pointer inline-flex py-2 px-4 border-b group items-center rounded-t-lg"
-                          :class="{'--tab-active': currentTabMonster === tabId }"
+                    <span class="cursor-pointer inline-flex py-2 px-4 border-b-2 group items-center rounded-t-lg"
+                          :class="currentTabMonster === tabId ? '--tab-active' : 'border-transparent'"
                           @click="currentTabMonster = tabId"
                     >
                         <img class="h-8 rounded-full mr-2 border border-gray-400" src="../assets/images/monster.png"
