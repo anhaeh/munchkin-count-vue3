@@ -25,8 +25,8 @@ const checkOutsideComponent = () => {
 </script>
 
 <template>
-    <div class="dropdown-component fixed bottom-20">
-        <div @click="show = true">
+    <div class="dropdown-component absolute">
+        <div @click="show = !show">
             <slot></slot>
         </div>
         <Transition enter-from-class="transition duration-200 scale-100 opacity-0"
@@ -34,7 +34,7 @@ const checkOutsideComponent = () => {
                     leave-from-class="transition duration-150 scale-100"
                     leave-to-class="transition duration-150 scale-100 opacity-0"
         >
-            <div v-show="show" class="z-10 bg-white divide-y divide-gray-200 divide-solid rounded-lg shadow w-44 text-sm"
+            <div v-show="show" class="relative z-10 bg-white divide-y divide-gray-200 divide-solid rounded-lg drop-shadow-2xl w-44 text-sm"
             >
                 <div v-for="(item, id) in items" :key="id"
                      class="block p-4 text-primary-800 cursor-pointer"

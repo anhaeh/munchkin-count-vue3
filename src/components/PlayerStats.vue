@@ -6,8 +6,7 @@ const { getPlayer, getImageUrl } = useMunchkinStore()
 
 const props = defineProps({
   playerId: {
-    required: true,
-    type: String
+    required: true
   },
   modifier: {
     required: true,
@@ -49,7 +48,7 @@ const stats = [
 
 <template>
     <div v-if="player" class="p-2">
-        <div class="flex items-center space-x-4 mb-2">
+        <div class="avatar-title flex items-center space-x-4 mb-2">
             <img class="w-20 h-20 rounded-full drop-shadow border-primary-300 border-2"
                  :src="getImageUrl(player.image)"
             >

@@ -44,12 +44,14 @@ const dropdownItems = [
         <div class="btn-primary float-btn rounded-full" @click="router.push({name: 'battle', params: { id: props.id }})">
             <i class="fa fa-dungeon"></i>
         </div>
-        <dropdown :items="dropdownItems">
-            <div class="btn-primary-outline float-btn rounded-full left-5"
-                 title="more"
-            >
-                <i class="fa fa-ellipsis-vertical"></i>
-            </div>
-        </dropdown>
+        <div class="fixed bottom-48">
+            <dropdown :items="dropdownItems">
+                <div class="btn-primary-outline float-btn rounded-full left-5"
+                     title="more"
+                >
+                    <i class="fa fa-ellipsis-vertical"></i>
+                </div>
+            </dropdown>
+        </div>
     </div>
 </template>

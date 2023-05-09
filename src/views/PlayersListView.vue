@@ -35,13 +35,15 @@ const dropdownItems = [
 
             />
         </ul>
-        <dropdown :items="dropdownItems">
-            <div class="btn-primary-outline float-btn rounded-full left-5"
-                 title="more"
-            >
-                <i class="fa fa-ellipsis-vertical"></i>
-            </div>
-        </dropdown>
+        <div class="fixed bottom-36">
+            <dropdown :items="dropdownItems">
+                <div class="btn-primary-outline float-btn rounded-full left-5"
+                     title="more"
+                >
+                    <i class="fa fa-ellipsis-vertical"></i>
+                </div>
+            </dropdown>
+        </div>
     </div>
 </template>
 

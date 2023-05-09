@@ -17,7 +17,7 @@ module.exports = {
         'secondary': {
           100: '#e5deda',
           300: '#d9cfc9',
-          500: '#c9b8a1',
+          500: '#f3cfad',
           700: '#fdd397'
         }
       },

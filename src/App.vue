@@ -19,7 +19,7 @@ import { RouterView } from 'vue-router'
 <style lang="sass">
 .app
   @apply bg-secondary-300
-  height: 100vh
+  min-height: 100vh
 .float-btn
   @apply drop-shadow-md h-14 w-14 justify-center cursor-pointer
   position: fixed

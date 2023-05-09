@@ -7,15 +7,15 @@ const dice = reactive({
 })
 const rollDice = () => {
   dice.loading = true
-  const newValue = Math.floor(Math.random() * 6) + 1
-  const diceClasses = {
-    1: 'one',
-    2: 'two',
-    3: 'three',
-    4: 'four',
-    5: 'five',
-    6: 'six'
-  }
+  const newValue = Math.floor(Math.random() * 6)
+  const diceClasses = [
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six'
+  ]
   dice.value = diceClasses[newValue]
   setTimeout(() => dice.loading = false, 400)
 
