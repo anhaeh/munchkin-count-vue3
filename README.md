@@ -2,6 +2,14 @@
 
 This is a basic App for following a Munchkin Game. You can add players and save their stats from a game.
 
+## Features
+* Roll Dice
+* Show players stats
+* Simulate battle
+* Persist State in localstorage
+
+## Screens
+
 ![Screenshot](screens/screen1.png)
 ![Screenshot](screens/screen2.png)
 ![Screenshot](screens/screen3.png)
