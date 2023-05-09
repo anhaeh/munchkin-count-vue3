@@ -39,28 +39,28 @@ watch(players, (newValue) => {
     <div class="border-b border-gray-200 dark:border-gray-700">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-primary-900">
             <li v-for="(player, tabId) in players">
-                    <span class="cursor-pointer inline-flex py-2 px-4 border-b-2 border-transparent group items-center rounded-t-lg"
-                          :class="{'--active': currentTabPlayer === tabId }"
-                          @click="currentTabPlayer = tabId"
-                    >
-                        <img class="h-8 rounded-full mr-2 border border-gray-400" :src="getImageUrl(player.image)"
-                             alt="">
-                        {{ player.name }}
-                    </span>
+              <span class="cursor-pointer inline-flex py-2 px-4 border-b-2 group items-center rounded-t-lg"
+                    :class="{'--tab-active': currentTabPlayer === tabId }"
+                    @click="currentTabPlayer = tabId"
+              >
+                <img class="h-8 rounded-full mr-2 border border-gray-400"
+                     :src="getImageUrl(player.image)"
+                     alt="">
+                {{ player.name }}
+              </span>
             </li>
             <div v-if="players.length < 2">
                 <dropdown class="" :items="dropdownPlayers">
                     <li class="flex items-center p-2">
-                            <span class="cursor-pointer flex p-2 border-b-2 border-transparent group items-center h-max">
-                                <i class="fa fa-plus mr-2"></i>
-                                Add ally
-                            </span>
+                      <span class="cursor-pointer flex p-2 group items-center">
+                          <i class="fa fa-plus mr-2"></i>
+                          Add ally
+                      </span>
                     </li>
                 </dropdown>
             </div>
         </ul>
     </div>
-
     <PlayerStats :key="currentPlayer.id"
                  :playerId="currentPlayer.id"
                  v-model:modifier="currentPlayer.modifier"
@@ -75,6 +75,4 @@ watch(players, (newValue) => {
     padding: 0
     p
       @apply text-lg
-.--active
-  @apply border-b-primary-300 bg-amber-50
 </style>

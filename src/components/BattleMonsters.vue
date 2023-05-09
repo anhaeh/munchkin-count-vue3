@@ -30,11 +30,11 @@ watch(monsters, (newValue) => {
 </script>
 
 <template>
-    <div class="border-b border-gray-200 dark:border-gray-700">
-        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-primary-900">
+    <div class="border-b border-gray-200">
+        <ul class="flex flex-wrap text-sm font-medium text-center text-primary-900">
             <li v-for="(monster, tabId) in monsters">
-                    <span class="cursor-pointer inline-flex py-2 px-4 border-b-2 border-transparent group items-center rounded-t-lg"
-                          :class="{'--active': currentTabMonster === tabId }"
+                    <span class="cursor-pointer inline-flex py-2 px-4 border-b-2 group items-center rounded-t-lg"
+                          :class="{'--tab-active': currentTabMonster === tabId }"
                           @click="currentTabMonster = tabId"
                     >
                         <img class="h-8 rounded-full mr-2 border border-gray-400" src="../assets/images/monster.png"
@@ -43,7 +43,7 @@ watch(monsters, (newValue) => {
                     </span>
             </li>
             <li class="flex items-center" @click="addMonster">
-              <span class="cursor-pointer h-12 flex border-b-2 border-transparent group items-center px-4 py-2">
+              <span class="cursor-pointer h-12 flex group items-center px-4 py-2">
                   <i class="fa fa-plus mr-2"></i>
                   Add
               </span>
@@ -51,7 +51,7 @@ watch(monsters, (newValue) => {
         </ul>
     </div>
 
-    <div class="flex flex-col gap-3 p-2">
+    <div class="flex flex-col gap-3 p-2 mt-2">
         <div class="attack-counter text-center p-3 my-3">
             <p class="text-red-900 font-bold"
                title="atack"
@@ -90,6 +90,4 @@ watch(monsters, (newValue) => {
     padding: 0
     p
       @apply text-lg
-.--active
-  @apply border-b-primary-300 bg-amber-50
 </style>
